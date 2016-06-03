@@ -415,8 +415,8 @@ get_data_ft_api_terms <-
 #'
 #' @examples
 #' get_data_ft_api_domains(domains = c('realdeal.com', 'pehub.com', 'sbnation.com', 'wsj.com', 'seekingalpha.com')) %>% View
-get_data_ft_api_domains <- function(term = NA,
-                                    domains = c('washingtonpost.com', 'nytimes.com'),
+get_data_ft_api_domains <- function(domains = c('washingtonpost.com', 'nytimes.com'),
+                                    term = NA,
                                     return_image_url = T,
                                     last_minutes = NA,
                                     max_rows = 1000,
