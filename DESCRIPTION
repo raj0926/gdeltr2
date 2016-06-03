@@ -1,0 +1,34 @@
+Package: gdeltr2
+Type: Package
+Title: R's modern interface for The GDELT Project
+Year: 2016
+Version: 0.1.0
+Authors@R: person("Alex", "Bresler", email = "abreselr@asbcllc.com", role = c("aut", "cre"))
+URL: https://github.com/abresler/gdeltr2
+Description: A tool to efficently accessing all of the GDELT Project's raw data
+    and APIs.
+Depends:
+    R (>= 3.2.0)
+License: MIT + file LICENSE
+LazyData: TRUE
+Imports:
+    dplyr,
+    stringr,
+    magrittr,
+    purrr,
+    tidyr,
+    rvest,
+    lubridate,
+    readr,
+    urltools,
+    jsonlite,
+    httr,
+    xml2,
+    curl,
+    tibble
+Suggests:
+    xml2
+Collate:
+    'gdelt_event_gkg.R'
+    'gdelt_free_text_api.R'
+RoxygenNote: 5.0.1
