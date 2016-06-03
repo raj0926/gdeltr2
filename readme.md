@@ -40,7 +40,7 @@ devtools::install_github("abresler/gdeltr2")
 
 The package currently consists of two function families, **data acquisition** and **data tidying**.
 
-The package data acquisition functions begin with `get_urls_` for acquiring data store log information, `get_codes_` for acquiring codebooks and `get_data_` for downloading and reading data.
+The package data acquisition functions begin with `get_urls_` for acquiring data store log information, `get_codes_` for acquiring code books and `get_data_` for downloading and reading data.
 
 The data tidying functions begin with `get_mentioned_` and they apply to a number of the features in the **gkg** data store that will get described in further detail farther below.
 
@@ -67,11 +67,11 @@ The data tidying functions begin with `get_mentioned_` and they apply to a numbe
     -   `get_urls_gkg_15_minute_log` - retrieves GKG 15 minute capture logs; data begins February 18th, 2015 for the three table types
         -   gkg: This is the full gkg data set and contains columns that may require further data tidying tying to a **GKG Record ID**
         -   export: This data replicates the output contained in the GDELT event table for processed documents tying to a **Global Event ID**
-        -   mentions: This data contains information surrounding the processed events, including sources, tone, location within a doucment and this tying to a **Global Event ID**
+        -   mentions: This data contains information surrounding the processed events, including sources, tone, location within a document and this tying to a **Global Event ID**
     -   `get_urls_gkg_daily_summaries` - retrieves daily gkg capture logs; data begins in April of 2013.
     -   Each day contains a count file and the full gkg output.
     -   `get_data_gkg_day_summary()` retrieves GKG daily summary data for specified date(s), this captures *count files* by `is_count_file = T`
-    -   `get_data_gkg_days_detailed()` - retrieves GKG data from the data cached every 15 minutes for specified date(s) for a given table. The table can be one of `c('gkg', 'export', 'mentions')`. This function may require significant bandwith and memory given the potential file sizes.
+    -   `get_data_gkg_days_detailed()` - retrieves GKG data from the data cached every 15 minutes for specified date(s) for a given table. The table can be one of `c('gkg', 'export', 'mentions')`. This function may require significant bandwidth and memory given the potential file sizes.
 
 #### <strong>Tidying Functions</strong>
 
@@ -87,7 +87,7 @@ Many of the columns in the GKG output are concatenated and require further parsi
 
 #### <strong>Code Books</strong>
 
-All these the GDELT and GKG datasets contain a whole host of codes that need resolution to be human readable. The package contains easy access to these code books to allow for that resolution. These functions provide access to the codebooks:
+All these the GDELT and GKG datasets contain a whole host of codes that need resolution to be human readable. The package contains easy access to these code books to allow for that resolution. These functions provide access to the code books:
 
 -   `get_codes_gcam()` - retrieves Global Content Analysis Measurement **\[GCAM\]** codes
 -   `get_codes_cameo_country()` - retrieves Conflict and Mediation Event Observations **\[CAMEO\]** country codes
