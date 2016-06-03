@@ -115,6 +115,11 @@ get_data_ft_api_term <-
         term
     }
 
+    if (term %>% is.na() & !domain %>% is.na) {
+      term_word <-
+        domain
+    }
+
     if (!domain %>% is.na()) {
       domain_slug <-
         '%20domain:' %>%
