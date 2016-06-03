@@ -7,7 +7,7 @@ gdeltr2
 
 [The Global Database of Events, Language, and Tone](gdelt.org) **\[GDELT\]** is a non profit whose initiative is to: &gt; construct a catalog of human societal-scale behavior and beliefs across all countries of the world, connecting every person, organization, location, count, theme, news source, and event across the planet into a single massive network that captures what's happening around the world, what its context is and who's involved, and how the world is feeling about it, every single day.
 
-GDELT was founded in 1994 and it's data commences in 1979. Over the last two years the GDELT's functionality and abilities have grown exponentially, for example in May 2014 GDELT processed 3,928,926 where as in May 2016 it processed 6,198,461. GDELT continues to evolve and integrate advanced machine learning tools including [Google Cloud Vision](https://cloud.google.com/vision/) \[Not integrated into the package as this is only accessible via [Google Big Query](https://bigquery.cloud.google.com/table/gdelt-bq:gdeltv2.cloudvision?pli=1)\]
+GDELT was founded in 1994 and it's data commences in 1979. Over the last two years the GDELT's functionality and abilities have grown exponentially, for example in May 2014 GDELT processed 3,928,926 where as in May 2016 it processed 6,198,461. GDELT continues to evolve and integrate advanced machine learning tools including [Google Cloud Vision](https://cloud.google.com/vision/) \[Not integrated into the package but coming soon!!\]
 
 #### <strong>The project contains three data stores</strong>
 

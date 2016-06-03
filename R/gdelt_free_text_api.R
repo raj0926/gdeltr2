@@ -123,7 +123,7 @@ get_data_ft_api_term <-
     if (!domain %>% is.na()) {
       domain_slug <-
         '%20domain:' %>%
-        paste0(domain)
+        paste0(domain %>% urltools::url_encode())
     } else {
       domain_slug <-
         ''
@@ -253,11 +253,16 @@ get_data_ft_api_term <-
 
     page_size_df <-
       page.has.content$headers  %>%
-      flatten_df %>%
-      mutate(`content-length` = `content-length` %>% as.numeric)
+      flatten_df
 
-    if (page_size_df$`content-length` <= 41) {
-      stop("This search has no data")
+    if ('`content-length`' %in% names(page_size_df)) {
+      page_size_df <-
+        page_size_df %>%
+        mutate(`content-length` = `content-length` %>% as.numeric)
+
+      if (page_size_df$`content-length` <= 41) {
+        stop("This search has no data")
+      }
     }
 
     page <-
@@ -327,6 +332,17 @@ get_data_ft_api_term <-
       url_df <-
         url_df %>%
         dplyr::filter(language == 'English')
+    }
+
+    url_df <-
+      url_df %>%
+      mutate(domain.article = urltools::domain(url.article) %>% str_replace_all('www.', '')) %>%
+      dplyr::select(term:url.article, domain.article, everything())
+
+    if (term %>% is.na()) {
+      url_df <-
+        url_df %>%
+        dplyr::select(-term)
     }
 
     if (return_message == T) {
