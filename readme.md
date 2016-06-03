@@ -13,7 +13,7 @@ GDELT was founded in 1994 and it's data commences in 1979. Over the last two yea
 
 -   [The GDELT Events Database](http://gdeltproject.org/data.html#rawdatafiles) **\[EVENTS\]**: Global Events, 1979 to present.
 -   [The GDELT Global Knowledge Graph](http://gdeltproject.org/data.html#rawdatafiles) **\[GKG\]** : GDELT's Knowledge Graph, April 2013 to present.
--   [The GDELT Free Text API](http://blog.gdeltproject.org/announcing-the-gdelt-full-text-search-api/) **[Free Text API](#free-text-api) **: Full text search for all monitored sources within a 24 hour window. Output includes raw data, sentiment, and word counts.
+-   [The GDELT Free Text API](http://blog.gdeltproject.org/announcing-the-gdelt-full-text-search-api/) **[Free Text API](#free-text-api)**: Full text search for all monitored sources within a 24 hour window. Output includes raw data, sentiment, and word counts.
 
 #### <strong>Why gdeltr2?</strong>
 
