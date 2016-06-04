@@ -1081,10 +1081,10 @@ get_gdelt_url_data <-
     }
 
     if (gdelt_cols == 61) {
-      load_needed_packages(c('urltools'))
       gdelt_data <-
         csv_file_loc %>%
         readr::read_tsv(col_names = F)
+
       names(gdelt_data) <-
         get_schema_gdelt_events() %>% .$name.actual
 
@@ -1101,12 +1101,6 @@ get_gdelt_url_data <-
         gdelt_data %>%
         dplyr::mutate_each_(funs(as.logical(.)),
                      gdelt_data %>% dplyr::select(matches("is.")) %>% names)
-      if ('id.adm2code.actor.1' %in% names(gdelt_data)) {
-      gdelt_data <-
-        gdelt_data %>%
-        mutate(id.adm2code.actor.1 = id.adm2code.actor.1 %>% as.numeric)
-
-      }
 
       gdelt_data <-
         gdelt_data %>%
@@ -1123,7 +1117,6 @@ get_gdelt_url_data <-
     }
 
     if (gdelt_cols == 57) {
-      load_needed_packages(c('urltools'))
       gdelt_data <-
         csv_file_loc %>%
         readr::read_tsv(col_names = F)
@@ -1312,7 +1305,6 @@ get_gdelt_url_data <-
         )) %>%
         suppressMessages()
 
-
     }
 
     if (gdelt_cols == 11) {
@@ -1389,6 +1381,20 @@ get_gdelt_url_data <-
       "Downloaded, parsed and imported " %>%
         paste0(url) %>%
         message()
+
+    }
+
+    if ('id.adm1code.actor.1' %in% names(gdelt_data)) {
+      gdelt_data <-
+        gdelt_data %>%
+        mutate(id.adm1code.actor.1 = id.adm1code.actor.1 %>% as.character())
+
+    }
+
+    if ('id.adm1code.actor.2' %in% names(gdelt_data)) {
+      gdelt_data <-
+        gdelt_data %>%
+        mutate(id.adm1code.actor.2 = id.adm1code.actor.2 %>% as.character())
 
     }
 
