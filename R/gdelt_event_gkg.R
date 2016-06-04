@@ -944,6 +944,7 @@ get_schema_gkg_mentions <- function() {
 #' @param return_message
 #' @importFrom purrr flatten_chr
 #' @importFrom tidyr extract_numeric
+#' @importFrom purrr compact
 #' @import dplyr
 #' @import utils
 #' @import urltools
@@ -1009,7 +1010,7 @@ get_gdelt_url_data <-
     gdelt_cols <-
       csv_file_loc %>%
       read_tsv(col_names = F,
-               n_max = 1) %>% ncol %>% suppressWarnings() %>% extract_numeric(.)()
+               n_max = 1) %>% ncol %>% suppressWarnings() %>% extract_numeric()
 
 
     if (gdelt_cols == 16) {
@@ -1393,7 +1394,7 @@ get_gdelt_url_data <-
 #'
 #' @param gdelt_data
 #' @param filter_na
-#' @param include_char_loc
+#' @param include_char_locg
 #' @param return_wide
 #' @importFrom tidyr gather
 #' @importFrom tidyr unite
@@ -1508,7 +1509,7 @@ get_mentioned_gkg_numerics <- function(gdelt_data,
                                return_wide = return_wide) %>%
         dplyr::mutate(id.gkg.record = counts_data$id.gkg.record[x])
     }) %>%
-    compact %>%
+    purrr::compact %>%
     bind_rows
 
   if (include_char_loc == F) {
@@ -1656,7 +1657,7 @@ get_mentioned_gkg_people <- function(gdelt_data,
                                     return_wide = return_wide) %>%
         dplyr::mutate(id.gkg.record = counts_data$id.gkg.record[x])
     }) %>%
-    compact %>%
+    purrr::compact %>%
     bind_rows
 
   all_counts <-
@@ -1808,7 +1809,7 @@ get_mentioned_gkg_organizations <- function(gdelt_data,
                                           return_wide = return_wide) %>%
         dplyr::mutate(id.gkg.record = counts_data$id.gkg.record[x])
     }) %>%
-    compact %>%
+    purrr::compact %>%
     bind_rows
 
   all_counts <-
@@ -1920,7 +1921,7 @@ get_mentioned_gkg_names <- function(gdelt_data,
                                    return_wide = return_wide) %>%
         dplyr::mutate(id.gkg.record = counts_data$id.gkg.record[x])
     }) %>%
-    compact %>%
+    purrr::compact %>%
     bind_rows
 
   all_counts <-
@@ -2071,7 +2072,7 @@ get_mentioned_gkg_themes <- function(gdelt_data,
                                    return_wide = return_wide) %>%
         dplyr::mutate(id.gkg.record = counts_data$id.gkg.record[x])
     }) %>%
-    compact %>%
+    purrr::compact %>%
     bind_rows
 
   if (theme_column == 'themes') {
@@ -2212,7 +2213,7 @@ get_mentioned_gkg_social_embeds <- function(gdelt_data,
                    return_wide = return_wide) %>%
         dplyr::mutate(id.gkg.record = counts_data$id.gkg.record[x])
     }) %>%
-    compact %>%
+    purrr::compact %>%
     bind_rows
 
   if (social_embed_column == 'url.social_media_image.embeds') {
@@ -2314,7 +2315,7 @@ get_mentioned_gkg_article_tone <- function(gdelt_data,
       parse_article_tones(field = counts_data$tone[x], return_wide = return_wide) %>%
         dplyr::mutate(id.gkg.record = counts_data$id.gkg.record[x])
     }) %>%
-    compact %>%
+    purrr::compact %>%
     bind_rows
 
   all_counts <-
@@ -2513,7 +2514,7 @@ get_mentioned_gkg_event_counts <- function(gdelt_data,
                         return_wide = return_wide) %>%
         dplyr::mutate(id.gkg.record = counts_data$id.gkg.record[x])
     }) %>%
-    compact %>%
+    purrr::compact %>%
     bind_rows
 
   if (count_column == "counts") {
@@ -2731,7 +2732,7 @@ get_mentioned_gkg_locations <- function(gdelt_data,
                            return_wide = return_wide) %>%
         dplyr::mutate(id.gkg.record = counts_data$id.gkg.record[x])
     }) %>%
-    compact %>%
+    purrr::compact %>%
     bind_rows
 
   all_counts <-
@@ -2866,7 +2867,7 @@ get_mentioned_gkg_dates <- function(gdelt_data,
       parse_dates(field = counts_data$dates[x], return_wide = return_wide) %>%
         dplyr::mutate(id.gkg.record = counts_data$id.gkg.record[x])
     }) %>%
-    compact %>%
+    purrr::compact %>%
     bind_rows
 
   all_counts <-
@@ -2985,7 +2986,7 @@ get_mentioned_gkg_quotes <- function(gdelt_data,
       parse_quotes(field = counts_data$quotations[x], return_wide = return_wide) %>%
         dplyr::mutate(id.gkg.record = counts_data$id.gkg.record[x])
     }) %>%
-    compact %>%
+    purrr::compact %>%
     bind_rows
 
   all_counts <-
@@ -3032,7 +3033,7 @@ get_mentioned_gkg_gcams <- function(gdelt_data,
 
         article.word_count <-
           fields[1] %>%
-          extract_numeric(.)()
+          extract_numeric()
 
         fields_df <-
           data_frame(article.word_count,
@@ -3100,7 +3101,7 @@ get_mentioned_gkg_gcams <- function(gdelt_data,
                       return_wide = return_wide) %>%
         dplyr::mutate(id.gkg.record = counts_data$id.gkg.record[x])
     }) %>%
-    compact %>%
+    purrr::compact %>%
     bind_rows
   if (merge_gcam_codes == T) {
     all_counts <-
@@ -3231,7 +3232,7 @@ get_mentioned_gkg_source_data <-
                           return_wide = return_wide) %>%
           dplyr::mutate(id.gkg.record = counts_data$id.gkg.record[x])
       }) %>%
-      compact %>%
+      purrr::compact %>%
       bind_rows
 
     if (source_column == 'url.sources') {
@@ -3318,7 +3319,7 @@ get_data_gkg_day_detailed <- function(date_data = "2016-06-01",
         empty_trash = empty_trash
       )
     }) %>%
-    compact %>%
+    purrr::compact %>%
     bind_rows %>%
     distinct %>%
     suppressMessages() %>%
@@ -3369,7 +3370,7 @@ get_data_gkg_days_detailed <- function(dates = c("2016-06-01"),
           return_message = return_message
         )
     ) %>%
-    compact %>%
+    purrr::compact %>%
     bind_rows
 
   return(all_data)
@@ -3446,7 +3447,7 @@ get_data_gkg_day_summary <- function(date_data = "2016-06-01",
         empty_trash = empty_trash
       )
     }) %>%
-    compact %>%
+    purrr::compact %>%
     bind_rows %>%
     distinct
 
@@ -3501,7 +3502,7 @@ get_data_gkg_days_summary <- function(dates = c("2016-06-01"),
           return_message = return_message
         )
     ) %>%
-    compact %>%
+    purrr::compact %>%
     bind_rows
 
   return(all_data)
@@ -3515,7 +3516,7 @@ get_data_gkg_days_summary <- function(dates = c("2016-06-01"),
 #' @param remove_files
 #' @param empty_trash
 #' @param return_message
-#'
+#' @importFrom purrr compact
 #' @return
 #'
 #' @examples
@@ -3563,7 +3564,7 @@ get_data_gdelt_period_event <- function(period = 1983,
         empty_trash = empty_trash
       )
     }) %>%
-    compact %>%
+    purrr::compact %>%
     bind_rows %>%
     distinct
 
@@ -3612,7 +3613,7 @@ get_data_gdelt_periods_event <- function(periods = c(1983, 1984),
           return_message = return_message
         )
     ) %>%
-    compact %>%
+    purrr::compact %>%
     bind_rows
 
   return(all_data)

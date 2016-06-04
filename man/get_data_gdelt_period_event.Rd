@@ -8,9 +8,6 @@ get_data_gdelt_period_event(period = 1983,
   file_directory = "Desktop/temp_gdelt_data", is_count_file = F,
   remove_files = T, empty_trash = T, return_message = T)
 }
-\arguments{
-\item{return_message}{}
-}
 \value{
 
 }
