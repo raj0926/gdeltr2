@@ -5,10 +5,10 @@
 \title{Returns GDELT free text API results for multiple webdomains}
 \usage{
 get_data_ft_api_domains(domains = c("washingtonpost.com", "nytimes.com"),
-  term = NA, return_image_url = T, last_minutes = NA, max_rows = 1000,
-  search_language = "English", source_language = "English",
-  sort_by = "date", dedeup_results = T, only_english = F,
-  return_message = T)
+  use_exact_domains = F, term = NA, return_image_url = T,
+  last_minutes = NA, max_rows = 1000, search_language = "English",
+  source_language = "English", sort_by = "date", dedeup_results = T,
+  only_english = F, return_message = T)
 }
 \description{
 Returns GDELT free text API results for multiple webdomains

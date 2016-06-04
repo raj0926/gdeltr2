@@ -5,8 +5,10 @@ gdeltr2
 
 #### <strong>What is the GDELT Project?</strong>
 
-[The Global Database of Events, Language, and Tone](gdelt.org) **\[GDELT\]** is a non profit whose initiative is to: &gt; construct a catalog of human societal-scale behavior and beliefs across all countries of the world, connecting every person, organization, location, count, theme, news source, and event across the planet into a single massive network that captures what's happening around the world, what its context is and who's involved, and how the world is feeling about it, every single day.
-
+[The Global Database of Events, Language, and Tone](gdelt.org) **\[GDELT\]** is a non profit whose initiative is to:
+<blockquote>
+construct a catalog of human societal-scale behavior and beliefs across all countries of the world, connecting every person, organization, location, count, theme, news source, and event across the planet into a single massive network that captures what's happening around the world, what its context is and who's involved, and how the world is feeling about it, every single day.
+</blockquote>
 GDELT was founded in 1994 and it's data commences in 1979. Over the last two years the GDELT's functionality and abilities have grown exponentially, for example in May 2014 GDELT processed 3,928,926 where as in May 2016 it processed 6,198,461. GDELT continues to evolve and integrate advanced machine learning tools including [Google Cloud Vision](https://cloud.google.com/vision/) \[Not integrated into the package but coming soon!!\]
 
 #### <strong>The project contains three data stores</strong>
@@ -29,6 +31,15 @@ Although R has two existing packages that allow users to interact with portions 
 -   [GDELTtools](https://cran.r-project.org/web/packages/GDELTtools/)
 
 These packages are old, incomplete and difficult to use and it is my hope that gdelt2r allows the R user easy access to GDELT's data allowing for faster and more exhilarating data visualizations and analysis!
+
+#### <strong>PRIOR TO INSTALL</strong>
+
+This package requires the development versions of `devtools` and `dplyr` so before installation please do the following:
+
+``` r
+devtools::install_github("hadley/devtools")
+devtools::install_github("hadley/dplyr")
+```
 
 #### <strong>Installation</strong>
 
@@ -145,7 +156,7 @@ domain_sentiment <-
 ### GDELT Event Data
 
 ``` r
-events_1981_1989 <- 
+events_1983_1989 <- 
   get_data_gdelt_periods_event(
   periods = c(1983, 1989),
   file_directory = 'Desktop/gdelt_temp',

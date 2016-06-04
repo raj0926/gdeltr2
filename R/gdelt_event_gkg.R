@@ -963,7 +963,7 @@ get_gdelt_url_data <-
     files <-
       url %>%
       str_replace_all(
-        'http://data.gdeltproject.org/gdeltv2/|http://data.gdeltproject.org/gkg/|http://data.gdeltproject.org/events/',
+        'http://data.gdeltproject.org/gdeltv2/|http://data.gdeltproject.org/gkg/|http://data.gdeltproject.org/events/|http://data.gdeltproject.org/gdeltv2_cloudvision/',
         ''
       ) %>%
       str_split('\\.') %>%
@@ -977,6 +977,11 @@ get_gdelt_url_data <-
     file_type <-
       files %>%
       .[2]
+
+    if (file_type %in% c('imagetagsv1', 'translation')) {
+      is_cloud_vision_file <-
+        T
+    }
 
     temp.dir <-
       file_directory
