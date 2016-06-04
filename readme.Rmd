@@ -152,7 +152,7 @@ domain_sentiment <-
 
 ### GDELT Event Data
 ```{r eval=FALSE}
-events_1981_1989 <- 
+events_1983_1989 <- 
   get_data_gdelt_periods_event(
   periods = c(1983, 1989),
   file_directory = 'Desktop/gdelt_temp',
