@@ -23,6 +23,8 @@ load_needed_packages <- function(required_packages = c('dplyr')) {
 #' @return
 #' @import tidyr
 #' @importFrom lubridate with_tz
+#' @importFrom lubridate mdy_hm
+#' @importFrom magrittr %<>%
 #' @import stringr
 #'
 #' @examples
@@ -72,6 +74,7 @@ parse_source <- function(source = "netsdaily.com - writedate('06/02/2016 12:00 U
 #' @importFrom httr GET
 #' @importFrom purrr flatten_df
 #' @import rvest
+#' @importFrom xml2 read_html
 #'
 #' @return
 #'
@@ -418,7 +421,7 @@ get_data_ft_api_terms <-
 #' @param dedeup_results
 #' @param only_english
 #' @param return_message
-#'
+#' @importFrom xml2 read_html
 #' @return
 #' @export
 #'
@@ -480,7 +483,8 @@ get_data_ft_api_domains <- function(domains = c('washingtonpost.com', 'nytimes.c
 #' @param sort_by
 #' @param dedeup_results
 #' @param return_message
-#'
+#' @import rvest
+#' @importFrom xml2 read_html
 #' @return
 #'
 #' @examples
@@ -817,7 +821,8 @@ get_data_wordcloud_ft_api_terms <-
 #' @param sort_by
 #' @param dedeup_results
 #' @param return_message
-#'
+#' @import rvest
+#' @importFrom lubridate mdy_hms
 #' @return
 #'
 #' @examples
@@ -1002,8 +1007,8 @@ get_data_sentiment_ft_api <- function(term = 'Clinton',
 
   sentiment_data %<>%
     mutate(
-      date_time.sentiment = date_time_human.url %>% mdy_hms(tz = 'UTC') %>%  with_tz(Sys.timezone()),
-      date.sentiment = date_time_human.url %>% mdy_hms(tz = 'UTC') %>% as.Date()
+      date_time.sentiment = date_time_human.url %>% lubridate::mdy_hms(tz = 'UTC') %>%  with_tz(Sys.timezone()),
+      date.sentiment = date_time_human.url %>% lubridate::mdy_hms(tz = 'UTC') %>% as.Date()
     ) %>%
     dplyr::select(-c(date_time.url, date_time_human.url)) %>%
     dplyr::select(term, date_time.sentiment, date.sentiment, everything())

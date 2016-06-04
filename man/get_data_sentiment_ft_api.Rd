@@ -9,9 +9,6 @@ get_data_sentiment_ft_api(term = "Clinton", domain = NA,
   tone_more_than = NA, search_language = NA, source_language = NA,
   sort_by = "date", dedeup_results = T, return_message = T)
 }
-\arguments{
-\item{return_message}{}
-}
 \value{
 
 }

@@ -28,9 +28,8 @@ Imports:
     jsonlite,
     httr,
     curl,
+    xml2,
     tibble
-Suggests:
-    xml2
 Collate:
     'gdelt_event_gkg.R'
     'gdelt_free_text_api.R'

@@ -10,9 +10,6 @@ get_data_ft_api_domains(domains = c("washingtonpost.com", "nytimes.com"),
   sort_by = "date", dedeup_results = T, only_english = F,
   return_message = T)
 }
-\arguments{
-\item{return_message}{}
-}
 \description{
 Returns GDELT free text API results for multiple webdomains
 }

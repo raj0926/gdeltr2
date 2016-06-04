@@ -943,7 +943,7 @@ get_schema_gkg_mentions <- function() {
 #' @param empty_trash
 #' @param return_message
 #' @importFrom purrr flatten_chr
-#' @importFrom tidyr extract_numeric(.)
+#' @importFrom tidyr extract_numeric
 #' @import dplyr
 #' @import utils
 #' @import urltools

@@ -9,9 +9,6 @@ get_data_wordcloud_ft_api(term = "\\"Brooklyn Nets\\"", domain = NA,
   tone_less_than = NA, source_language = "English", sort_by = "date",
   dedeup_results = T, return_message = T)
 }
-\arguments{
-\item{return_message}{}
-}
 \value{
 
 }
