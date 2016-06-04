@@ -1101,6 +1101,12 @@ get_gdelt_url_data <-
         gdelt_data %>%
         dplyr::mutate_each_(funs(as.logical(.)),
                      gdelt_data %>% dplyr::select(matches("is.")) %>% names)
+      if ('id.adm2code.actor.1' %in% names(gdelt_data)) {
+      gdelt_data <-
+        gdelt_data %>%
+        mutate(id.adm2code.actor.1 = id.adm2code.actor.1 %>% as.numeric)
+
+      }
 
       gdelt_data <-
         gdelt_data %>%

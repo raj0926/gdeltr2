@@ -30,7 +30,8 @@ load_needed_packages <- function(required_packages = c('dplyr')) {
 #' @examples
 parse_source <- function(source = "netsdaily.com - writedate('06/02/2016 12:00 UTC'); (English / United States)") {
   source_df <-
-    dplyr::data_frame(source) %>%
+    data.frame(source,stringsAsFactors = F) %>%
+    tbl_df %>%
     tidyr::separate(source,
                     sep = '\\ - ',
                     into = c('source', 'date.language')) %>%
@@ -190,10 +191,10 @@ get_data_ft_api_term <-
       )
 
     sort_df <-
-      dplyr::data_frame(
+      data.frame(
         sort_term = c('date', 'relevence', 'tone.ascending', 'tone.descending'),
-        sort_slug = c('date', 'rel', 'toneasc', 'tonedesc')
-      )
+        sort_slug = c('date', 'rel', 'toneasc', 'tonedesc'),stringsAsFactors = F
+      ) %>% tbl_df
 
     if (sort_by %in% sort_df$sort_term == F) {
       stop("Sorry sort terms can only be\n" %>%
@@ -284,13 +285,14 @@ get_data_ft_api_term <-
       html_text
 
     url_df <-
-      dplyr::data_frame(
+      data.frame(
         term,
         url.text,
         url.article = url.source,
         date.data = Sys.time(),
-        url.search = url
+        url.search = url,stringsAsFactors = F
       ) %>%
+      tbl_df %>%
       bind_cols(sources %>%
                   parse_source()) %>%
       suppressWarnings()
@@ -595,10 +597,11 @@ get_data_wordcloud_ft_api <-
       )
 
     sort_df <-
-      dplyr::data_frame(
+      data.frame(
         sort_term = c('date', 'relevence', 'tone.ascending', 'tone.descending'),
-        sort_slug = c('date', 'rel', 'toneasc', 'tonedesc')
-      )
+        sort_slug = c('date', 'rel', 'toneasc', 'tonedesc'),stringsAsFactors = F
+      ) %>%
+      tbl_df
 
     if (sort_by %in% sort_df$sort_term == F) {
       stop("Sorry sort terms can only be\n" %>%
@@ -932,10 +935,10 @@ get_data_sentiment_ft_api <- function(term = 'Clinton',
       source_lang_slug
     )
   sort_df <-
-    dplyr::data_frame(
+    data.frame(
       sort_term = c('date', 'relevence', 'tone.ascending', 'tone.descending'),
-      sort_slug = c('date', 'rel', 'toneasc', 'tonedesc')
-    )
+      sort_slug = c('date', 'rel', 'toneasc', 'tonedesc'),stringsAsFactors = F
+    ) %>% tbl_df
 
   if (sort_by %in% sort_df$sort_term == F) {
     stop("Sorry sort terms can only be\n" %>%
