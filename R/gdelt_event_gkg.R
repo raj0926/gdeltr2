@@ -1412,6 +1412,20 @@ get_gdelt_url_data <-
 
     }
 
+    if ('id.adm1code.action' %in% names(gdelt_data)) {
+      gdelt_data <-
+        gdelt_data %>%
+        mutate(id.adm1code.action = id.adm1code.action %>% as.character())
+
+    }
+
+    if ('id.adm2code.action' %in% names(gdelt_data)) {
+      gdelt_data <-
+        gdelt_data %>%
+        mutate(id.adm2code.action = id.adm2code.action %>% as.character())
+
+    }
+
     return(gdelt_data)
 
   }
