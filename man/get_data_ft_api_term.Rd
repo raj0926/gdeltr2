@@ -14,8 +14,6 @@ get_data_ft_api_term(term = "\\"Brooklyn Nets\\"", domain = NA,
 \item{term}{any word, can be quoted or not}
 
 \item{domain}{\code{c(NA,'domain_name')}}
-
-\item{return_message}{}
 }
 \value{
 

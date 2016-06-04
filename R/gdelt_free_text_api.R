@@ -18,14 +18,17 @@ load_needed_packages <- function(required_packages = c('dplyr')) {
 #' Parses Source
 #'
 #' @param source
-#'
+#' @export
+#' @export
 #' @return
+#' @import tidyr
+#' @importFrom lubridate with_tz
+#' @import stringr
 #'
 #' @examples
 parse_source <- function(source = "netsdaily.com - writedate('06/02/2016 12:00 UTC'); (English / United States)") {
-  load_needed_packages(c('magrittr', 'tidyr', 'readr', 'dplyr', 'stringr', 'lubridate'))
   source_df <-
-    data_frame(source) %>%
+    dplyr::data_frame(source) %>%
     tidyr::separate(source,
                     sep = '\\ - ',
                     into = c('source', 'date.language')) %>%
@@ -64,6 +67,11 @@ parse_source <- function(source = "netsdaily.com - writedate('06/02/2016 12:00 U
 #' @param dedeup_results
 #' @param only_english
 #' @param return_message
+#' @importFrom jsonlite fromJSON
+#' @importFrom urltools url_encode
+#' @importFrom httr GET
+#' @importFrom purrr flatten_df
+#' @import rvest
 #'
 #' @return
 #'
@@ -84,20 +92,6 @@ get_data_ft_api_term <-
            dedeup_results = T,
            only_english = T,
            return_message = T) {
-    load_needed_packages(
-      c(
-        'urltools',
-        'rvest',
-        'httr',
-        'jsonlite',
-        'tidyr',
-        'stringr',
-        'dplyr',
-        'magrittr',
-        'purrr',
-        'lubridate'
-      )
-    )
     url_base <-
       'http://api.gdeltproject.org/api/v1/search_ftxtsearch/search_ftxtsearch?query='
 
@@ -110,7 +104,7 @@ get_data_ft_api_term <-
       term_slug <-
         term %>%
         str_to_lower() %>%
-        urltools::url_encode()
+        url_encode()
       term_word <-
         term
     }
@@ -193,7 +187,7 @@ get_data_ft_api_term <-
       )
 
     sort_df <-
-      data_frame(
+      dplyr::data_frame(
         sort_term = c('date', 'relevence', 'tone.ascending', 'tone.descending'),
         sort_slug = c('date', 'rel', 'toneasc', 'tonedesc')
       )
@@ -287,7 +281,7 @@ get_data_ft_api_term <-
       html_text
 
     url_df <-
-      data_frame(
+      dplyr::data_frame(
         term,
         url.text,
         url.article = url.source,
@@ -386,7 +380,6 @@ get_data_ft_api_terms <-
            dedeup_results = T,
            only_english = F,
            return_message = T) {
-    load_needed_packages(c('dplyr', 'purrr'))
     get_data_ft_api_term_safe <-
       failwith(NULL, get_data_ft_api_term)
     all_data <-
@@ -442,7 +435,6 @@ get_data_ft_api_domains <- function(domains = c('washingtonpost.com', 'nytimes.c
                                     dedeup_results = T,
                                     only_english = F,
                                     return_message = T) {
-  load_needed_packages(c('dplyr', 'purrr'))
   get_data_ft_api_term_safe <-
     failwith(NULL, get_data_ft_api_term)
 
@@ -505,20 +497,6 @@ get_data_wordcloud_ft_api <-
            sort_by = 'date',
            dedeup_results = T,
            return_message = T) {
-    load_needed_packages(
-      c(
-        'urltools',
-        'rvest',
-        'readr',
-        'jsonlite',
-        'stringr',
-        'dplyr',
-        'magrittr',
-        'purrr',
-        'lubridate',
-        'httr'
-      )
-    )
     url_base <-
       'http://api.gdeltproject.org/api/v1/search_ftxtsearch/search_ftxtsearch?query='
 
@@ -613,7 +591,7 @@ get_data_wordcloud_ft_api <-
       )
 
     sort_df <-
-      data_frame(
+      dplyr::data_frame(
         sort_term = c('date', 'relevence', 'tone.ascending', 'tone.descending'),
         sort_slug = c('date', 'rel', 'toneasc', 'tonedesc')
       )
@@ -744,7 +722,6 @@ get_data_wordcloud_ft_api_domains <-
            sort_by = 'date',
            dedeup_results = T,
            return_message = T) {
-    load_needed_packages(c('dplyr', 'purrr'))
     get_data_wordcloud_ft_api_safe <-
       failwith(NULL, get_data_wordcloud_ft_api)
 
@@ -800,7 +777,6 @@ get_data_wordcloud_ft_api_terms <-
            sort_by = 'date',
            dedeup_results = T,
            return_message = T) {
-    load_needed_packages(c('dplyr', 'purrr'))
     get_data_wordcloud_ft_api_safe <-
       failwith(NULL, get_data_wordcloud_ft_api)
 
@@ -856,20 +832,6 @@ get_data_sentiment_ft_api <- function(term = 'Clinton',
                                                  sort_by = 'date',
                                                  dedeup_results = T,
                                                  return_message = T) {
-  load_needed_packages(
-    c(
-      'urltools',
-      'rvest',
-      'httr',
-      'jsonlite',
-      'stringr',
-      'dplyr',
-      'readr',
-      'magrittr',
-      'purrr',
-      'lubridate'
-    )
-  )
   url_base <-
     'http://api.gdeltproject.org/api/v1/search_ftxtsearch/search_ftxtsearch?query='
 
@@ -965,7 +927,7 @@ get_data_sentiment_ft_api <- function(term = 'Clinton',
       source_lang_slug
     )
   sort_df <-
-    data_frame(
+    dplyr::data_frame(
       sort_term = c('date', 'relevence', 'tone.ascending', 'tone.descending'),
       sort_slug = c('date', 'rel', 'toneasc', 'tonedesc')
     )
@@ -1102,7 +1064,6 @@ get_data_sentiment_ft_api_domains <-
            sort_by = 'date',
            dedeup_results = T,
            return_message = T) {
-    load_needed_packages(c('dplyr', 'purrr'))
     get_data_sentiment_ft_api_safe <-
       failwith(NULL, get_data_sentiment_ft_api)
 
@@ -1161,7 +1122,6 @@ get_data_sentiment_ft_api_terms <-
            sort_by = 'date',
            dedeup_results = T,
            return_message = T) {
-    load_needed_packages(c('dplyr', 'purrr'))
     get_data_sentiment_ft_api_safe <-
       failwith(NULL, get_data_sentiment_ft_api)
 

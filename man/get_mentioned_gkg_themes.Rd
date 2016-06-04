@@ -8,8 +8,6 @@ get_mentioned_gkg_themes(gdelt_data, filter_na = T, theme_column = "themes",
   return_wide = F)
 }
 \arguments{
-\item{return_wide}{}
-
 \item{organization_column}{options \code{c('theme', 'themes', 'themes.count', 'themes.char_loc', 'char_loc'))}}
 }
 \description{

@@ -9,8 +9,6 @@ get_mentioned_gkg_source_data(gdelt_data, source_column = "sources",
 }
 \arguments{
 \item{source_column}{options \code{c('sources', 'source', 'sources.url', 'source.url'))}}
-
-\item{return_wide}{}
 }
 \description{
 Returns source name or source url from a gkg data frame

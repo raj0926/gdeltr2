@@ -1,4 +1,0 @@
-load("/Users/alexbresler/Desktop/r_packages/gdeltr2/data/cameo_type_codes.rda")
-cameo_type_codes
-'cameo_type_codes.rda'
-load("/Users/alexbresler/Desktop/r_packages/gdeltr2/data/cameo_type_codes.rds")

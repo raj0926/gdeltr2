@@ -7,9 +7,6 @@
 get_mentioned_gkg_numerics(gdelt_data, filter_na = T, include_char_loc = T,
   return_wide = F)
 }
-\arguments{
-\item{return_wide}{}
-}
 \description{
 Returns long or wide mentioned numerics from a GKG data frame
 }

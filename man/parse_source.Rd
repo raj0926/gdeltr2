@@ -7,12 +7,6 @@
 
   parse_source(source = "netsdaily.com - writedate('06/02/2016 12:00 UTC'); (English / United States)")
 }
-\arguments{
-\item{source}{}
-}
-\value{
-
-}
 \description{
 Parses Source
 }
