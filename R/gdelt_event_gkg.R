@@ -1391,10 +1391,24 @@ get_gdelt_url_data <-
 
     }
 
-    if ('id.adm2code.actor.1' %in% names(gdelt_data)) {
+    if ('id.adm1code.actor.2' %in% names(gdelt_data)) {
       gdelt_data <-
         gdelt_data %>%
         mutate(id.adm1code.actor.2 = id.adm1code.actor.2 %>% as.character())
+
+    }
+
+    if ('id.adm2code.actor.1' %in% names(gdelt_data)) {
+      gdelt_data <-
+        gdelt_data %>%
+        mutate(id.adm2code.actor.1 = id.adm2code.actor.1 %>% as.character())
+
+    }
+
+    if ('id.adm2code.actor.2' %in% names(gdelt_data)) {
+      gdelt_data <-
+        gdelt_data %>%
+        mutate(id.adm2code.actor.2 = id.adm2code.actor.2 %>% as.character())
 
     }
 
