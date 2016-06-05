@@ -84,16 +84,17 @@ parse_source <- function(source = "netsdaily.com - writedate('06/02/2016 12:00 U
 get_data_ft_api_term <-
   function(term = '"Brooklyn Nets"',
            domain = NA,
-           return_image_url = T,
+           dedeup_results = T,
+           restrict_to_usa = F,
            last_minutes = NA,
            max_rows = 1000,
+           only_english = T,
+           return_image_url = T,
            tone_less_than = NA,
            tone_more_than = NA,
            search_language = 'English',
            source_language = 'English',
            sort_by = 'date',
-           dedeup_results = T,
-           only_english = T,
            return_message = T) {
     url_base <-
       'http://api.gdeltproject.org/api/v1/search_ftxtsearch/search_ftxtsearch?query='
@@ -349,6 +350,12 @@ get_data_ft_api_term <-
         dplyr::select(-term)
     }
 
+    if (restrict_to_usa == T) {
+      url_df <-
+        url_df %>%
+        dplyr::filter(country == 'United States')
+    }
+
     if (return_message == T) {
       "You got " %>%
         paste0(url_df %>% nrow, ' urls for ', term_word, ' at ', Sys.time()) %>%
@@ -381,14 +388,15 @@ get_data_ft_api_term <-
 get_data_ft_api_terms <-
   function(terms = c('"Brooklyn Nets"', '"New York Knicks"'),
            domain = NA,
+           dedeup_results = T,
+           restrict_to_usa = F,
+           only_english = F,
            return_image_url = T,
            last_minutes = NA,
            max_rows = 1000,
            search_language = 'English',
            source_language = 'English',
            sort_by = 'date',
-           dedeup_results = T,
-           only_english = F,
            return_message = T) {
     get_data_ft_api_term_safe <-
       failwith(NULL, get_data_ft_api_term)
@@ -404,6 +412,7 @@ get_data_ft_api_terms <-
             search_language = search_language,
             source_language = source_language,
             sort_by = sort_by,
+            restrict_to_usa = restrict_to_usa,
             only_english = T,
             dedeup_results = dedeup_results
           )
@@ -443,6 +452,7 @@ get_data_ft_api_domains <- function(domains = c('washingtonpost.com', 'nytimes.c
                                     search_language = 'English',
                                     source_language = 'English',
                                     sort_by = 'date',
+                                    restrict_to_usa = T,
                                     dedeup_results = T,
                                     only_english = F,
                                     return_message = T) {
@@ -460,6 +470,7 @@ get_data_ft_api_domains <- function(domains = c('washingtonpost.com', 'nytimes.c
           last_minutes = last_minutes,
           max_rows = max_rows,
           only_english = only_english,
+          restrict_to_usa = restrict_to_usa,
           search_language = search_language,
           source_language = source_language,
           sort_by = sort_by,
