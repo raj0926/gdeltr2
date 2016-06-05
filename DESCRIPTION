@@ -11,6 +11,7 @@ Depends:
     R (>= 3.2.0),
     readr,
     stringr,
+    stringi,
     dplyr,
     tidyr
 License: MIT + file LICENSE
