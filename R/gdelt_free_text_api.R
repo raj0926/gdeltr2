@@ -252,7 +252,7 @@ get_data_ft_api_term <-
       page.has.content$headers  %>%
       flatten_df
 
-    if ('`content-length`' %in% names(page_size_df)) {
+    if ('content-length' %in% names(page_size_df)) {
       page_size_df <-
         page_size_df %>%
         mutate(`content-length` = `content-length` %>% as.numeric)
@@ -265,6 +265,13 @@ get_data_ft_api_term <-
     page <-
       url %>%
       read_html
+
+    if (page %>%
+        html_nodes(xpath = '//b') %>%
+        html_text %>%
+        str_trim %>% length == 0) {
+      stop("This search has no data")
+    }
 
     url.text <-
       page %>%
